@@ -3,6 +3,12 @@ Streamlit app that allows to process image with license plate to find informatio
 
 ![Example Image](example_usage.png)
 
+# Usage
+To run an app use:
+`streamlit run main.py`
+
+To train your own license decetion model use: `train_notebook.ipynb`
+
 # Tech stack: 
 - OpenCV
 - PyTorch
