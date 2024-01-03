@@ -20,9 +20,12 @@ class Scraper:
         url = "".join([self.base_url, license_text])
         print(url)
         self.browser.get(url)
-        WebDriverWait( self.browser, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR , f"[aria-label=\"Zgadzam się\"]"))
-        )
+        try:
+            WebDriverWait(self.browser, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR , f"[aria-label=\"Zgadzam się\"]"))
+            )
+        except:
+            return {}
         bttn = self.browser.find_element(By.CSS_SELECTOR, f"[aria-label=\"Zgadzam się\"]")
         bttn.click()
 
@@ -32,7 +35,9 @@ class Scraper:
             text = comment.find_element(By.CLASS_NAME, "text").text
             date = comment.find_element(By.CLASS_NAME, "date").text
             comments[date] = text
-      
+        rate_btn = self.browser.find_elements(By.CLASS_NAME, "fingerUp")
+        if rate_btn is None:
+            return {}
         print("COMMENTS", comments)
         print("URL: ", url) 
         return comments

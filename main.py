@@ -38,7 +38,8 @@ if img_buffer is not None:
             if comments != {}:
                 st.write("Found license plate, see comments: ")
                 st.write(comments)
-            
+            else:
+                st.write("License not found")
 
 
 
